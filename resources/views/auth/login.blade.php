@@ -8,13 +8,15 @@
         <title>CSIS</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
-        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-<style>
+        <link href="{{ asset('css/login.css') }}" rel="stylesheet">
 
-
-</style>
     </head>
     <body>
+
+<section>
+    @include('layouts.bg_icon')
+</section>
+
     <div class="wrapper">
         <div class="logo">
             <img src="{{ asset('img/logo.png') }}" alt="">
@@ -26,7 +28,8 @@
             @csrf
             <div class="form-field d-flex align-items-center">
                 <span class="far fa-user" id="icon"></span>
-                <input class="text-light text-center" type="text" name="username" id="userName" placeholder="Username" value="cashier">
+                <input class="text-light text-center" type="hidden" name="username" id="userName" value="cashier">
+                <input class="text-light text-center" type="text"  placeholder="Username" value="cashier" disabled>
             </div>
             <div class="form-field d-flex align-items-center">
                 <span class="fas fa-key" id="icon"></span>
@@ -34,9 +37,7 @@
             </div>
             <button class="btn mt-3">Login</button>
         </form>
-        <div class="text-center fs-6">
-            <a href="#">Forget password?</a> or <a href="#">Sign up</a>
-        </div>
+
     </div>
         <!-- Bootstrap core JS-->
 
