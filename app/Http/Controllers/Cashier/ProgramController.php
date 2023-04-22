@@ -10,17 +10,9 @@ class ProgramController extends Controller
 {
     //
 
-    public function index(){
-
-
-
-    $programs = Program::all();
-
-
-
-
-
-
+    public function index()
+    {
+        $programs = Program::all();
         return view('cashier/managefees.index', compact('programs'));
     }
 }

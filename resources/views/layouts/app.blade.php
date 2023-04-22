@@ -15,7 +15,6 @@
     <title>CSIS</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('img/logo.png') }}" />
 
-    <!-- Custom fonts for this template-->
 
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
 
@@ -39,31 +38,31 @@
 
     <!-- Page Wrapper -->
     <div id="wrapper">
-    
+
         <!-- Sidebar -->
         @include('components._sidebar')
-        
+
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
-        
+
             <!-- Main Content -->
             <div id="content">
-            
+
                 <!-- Topbar -->
                 @include('components._topbar')
                 <!-- End of Topbar -->
                 @include('components._alert')
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                
+
                     @yield('content')
 
                 </div>
                 <!-- /.container-fluid -->
-                
+
             </div>
             <!-- End of Main Content -->
-            
+
             <!-- Footer -->
             @include('components._footer')
             <!-- End of Footer -->
@@ -78,15 +77,13 @@
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
-   
+
     @include('components._modal')
     <!-- Logout Modal-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
 
-    <!-- <script src="https://code.jquery.com/jquery-3.5.1.js" ></script> -->
     <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
-
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}" ></script>
 
     <!-- Core plugin JavaScript-->
@@ -99,8 +96,8 @@
     <script src="{{ asset('vendor/chart.js/Chart.min.js') }}"></script>
 
     <!-- Page level custom scripts -->
-    <!-- <script src="{{ asset('js/demo/chart-area-demo.js') }}"></script> -->
-    <!-- <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script> -->
+     {{-- <script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>
+     <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script> --}}
 
     <!-- Page level plugins -->
      <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
@@ -110,6 +107,7 @@
      <!-- Page level custom scripts -->
      <script src="{{ asset('js/demo/datatables-demo.js') }}"></script>
 
+     @include('components._modalscript')
 
 </body>
 

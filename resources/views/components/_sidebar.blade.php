@@ -50,9 +50,15 @@
     </li>
 
     <li class="nav-item ">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{{ route('discount.index') }}">
             <i class="fas fa-percent"></i>
             <span>Discount</span></a>
+    </li>
+
+    <li class="nav-item ">
+        <a class="nav-link" href="{{ route('fee.index') }}">
+        <i class="fas fa-money-bill"></i>
+            <span>Fees</span></a>
     </li>
 
     <li class="nav-item">
@@ -61,11 +67,7 @@
             <span>Students</span></a>
     </li>
 
-    <li class="nav-item ">
-        <a class="nav-link" href="#">
-        <i class="fas fa-money-bill"></i>
-            <span>Fees</span></a>
-    </li>
+
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
