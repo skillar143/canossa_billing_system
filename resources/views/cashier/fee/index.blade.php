@@ -2,15 +2,15 @@
 
 @section('content')
 
-<div class="card shadow mx-auto mt-5" style="width: 80%;">
+<div class="card shadow mx-auto mt-5 animated--grow-in" style="width: 80%;">
     <div class="card-header py-3 d-flex">
 
             <h6 class="m-0 font-weight-bold text-primary">School Fee</h6>
 
         <div class="ml-auto">
-            <a href="#" class="btn btn-sm btn-primary btn-icon-split" data-toggle="modal" data-target="#AddFee">
-                <span class="icon text-white-50">
-                    <i class="fas fa-plus"></i>
+            <a href="#" class="btn btn-sm btn-outline-primary btn-icon-split" data-toggle="modal" data-target="#AddFee">
+                <span class="icon">
+                    <i class="fas fa-plus text-primary"></i>
                 </span>
                 <span class="text">Add Fee</span>
             </a>
@@ -35,18 +35,18 @@
                      <td class="text-center font-weight-bold">{{ $fee->amount }}</td>
                      <td >
 
-                            <a class="btn btn-sm btn-success btn-icon-split m-1  edit-fee" data-toggle="modal" data-target="#editFee"
+                            <a class="btn btn-sm btn-outline-success btn-icon-split m-1  edit-fee" data-toggle="modal" data-target="#editFee"
                             data-id="{{ $fee->id }}"  data-description="{{ $fee->description }}" data-amount="{{ $fee->amount }}" >
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-pen"></i>
+                                <span class="icon">
+                                    <i class="fas fa-pen text-success"></i>
                                     </span>
                                     <span class="text px-3 d-none d-xl-block">Edit</span>
                             </a>
 
-                            <a href="#" class="btn btn-sm btn-danger btn-icon-split delete-fee m-1" data-toggle="modal" data-target="#deleteFee"
+                            <a href="#" class="btn btn-sm btn-outline-danger btn-icon-split delete-fee m-1" data-toggle="modal" data-target="#deleteFee"
                             data-id="{{ $fee->id }}"  data-description="{{ $fee->description }}" data-amount="{{ $fee->amount }}" >
-                                <span class="icon text-white-50">
-                                <i class="fas fa-minus"></i>
+                                <span class="icon">
+                                <i class="fas fa-minus text-danger"></i>
                                 </span>
                                 <span class="text px-3 d-none d-xl-block">Delete</span>
                             </a>

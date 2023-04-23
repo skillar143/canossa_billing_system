@@ -21,6 +21,9 @@ Auth::routes([
     'register' => false,
 ]);
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
 Route::prefix('/fee')->group(function(){
     Route::get('/', [App\Http\Controllers\Cashier\FeeController::class, 'index'])->name('fee.index');
     Route::post('/Add', [App\Http\Controllers\Cashier\FeeController::class, 'store'])->name('fee.store');
@@ -37,9 +40,11 @@ Route::prefix('/discount')->group(function(){
 
 });
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::prefix('/managefees')->group(function(){
+    Route::get('/', [App\Http\Controllers\Cashier\ProgramController::class, 'index'])->name('managefees.index');
+    Route::get('/view/{id}', [App\Http\Controllers\Cashier\ProgramController::class, 'show'])->name('managefees.show');
+});
 
-Route::get('/managefees', [App\Http\Controllers\Cashier\ProgramController::class, 'index'])->name('managefees.index');
 Route::get('/student', [App\Http\Controllers\Cashier\StudentController::class, 'index'])->name('student.index');
 
 Route::get('/discount', [App\Http\Controllers\Cashier\DiscountController::class, 'index'])->name('discount.index');
