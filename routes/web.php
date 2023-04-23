@@ -43,6 +43,8 @@ Route::prefix('/discount')->group(function(){
 Route::prefix('/managefees')->group(function(){
     Route::get('/', [App\Http\Controllers\Cashier\ProgramController::class, 'index'])->name('managefees.index');
     Route::get('/view/{id}', [App\Http\Controllers\Cashier\ProgramController::class, 'show'])->name('managefees.show');
+    Route::put('/unit/{id}', [App\Http\Controllers\Cashier\ProgramController::class, 'unit'])->name('managefees.unit');
+
 });
 
 Route::get('/student', [App\Http\Controllers\Cashier\StudentController::class, 'index'])->name('student.index');

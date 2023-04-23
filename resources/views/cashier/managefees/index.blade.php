@@ -37,5 +37,5 @@
         </div>
     </div>
 </div>
-
+@include('modals/managefees.unitCost')
 @endsection

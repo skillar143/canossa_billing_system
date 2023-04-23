@@ -19,33 +19,28 @@
                 <table class="table "  sort="asc" width="100%" cellspacing="0">
                     <tbody class="border-1">
                        <tr>
-                         <td class="text-center h5 font-weight-bold">per units</td>
-                         <td class="text-center">P524</td>
+                         <td class="text-center font-weight-bold">Per Units</td>
+                         <td class="text-center"><span>&#8369;</span>{{ $unit }}</td>
+                         <td>
+                             <a href="#" class="btn btn-sm btn-outline-success btn-icon-split" data-toggle="modal" data-target="#cost_per_unit">
+                                 <span class="icon">
+                                     <i class="fas fa-pen text-success"></i>
+                                 </span>
+                                 <span class="text">Edit</span>
+                             </a>
+                         </td>
                        </tr>
                        <tr>
-                        <td class="text-center h5 font-weight-bold">units</td>
-                        <td class="text-center">P{{ $firstyear }}</td>
+                        <td class="text-center font-weight-bold">Units</td>
+                        <td class="text-center">{{ $firstyear }}</td>
+                        <td></td>
                        </tr>
                        <tr>
-                        <td class="text-center h5 font-weight-bold">Tuition</td>
-                        <td class="text-center">P{{ ($firstyear)*524 }}</td>
+                        <td class="text-center font-weight-bold">Tuition (Regular Student)</td>
+                        <td class="text-center"><span>&#8369;</span>{{ ($firstyear)*$unit }}</td>
+                        <td></td>
                        </tr>
                     </tbody>
-
-                    <tbody>
-                        <tr>
-                          <td class="text-center h5 font-weight-bold">per units</td>
-                          <td class="text-center">P524</td>
-                        </tr>
-                        <tr>
-                         <td class="text-center h5 font-weight-bold">units</td>
-                         <td class="text-center">P{{ $firstyear }}</td>
-                        </tr>
-                        <tr>
-                         <td class="text-center h5 font-weight-bold">Tuition</td>
-                         <td class="text-center">P{{ ($firstyear)*524 }}</td>
-                        </tr>
-                     </tbody>
                 </table>
             </div>
 
@@ -54,4 +49,5 @@
         <div class="tab-pane fade" id="pills-fs" role="tabpanel" aria-labelledby="pills-profile-tab">1second</div>
       </div>
   </div>
+
 
