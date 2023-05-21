@@ -11,43 +11,26 @@
     </ul>
 </div>
 <hr class="sidebar-divider d-none d-md-block">
-  <div class="card-body">
-      <div class="tab-content" id="pills-tabContent">
-        <div class="tab-pane fade show active" id="pills-ff" role="tabpanel" aria-labelledby="pills-home-tab">
+<div class="card-body">
+    <div class="tab-content" id="pills-tabContent">
+      <div class="tab-pane fade show active " id="pills-ff" role="tabpanel" aria-labelledby="pills-home-tab">
+          <div class="d-flex align-content-stretch flex-wrap">
 
-            <div class="table-responsive">
-                <table class="table "  sort="asc" width="100%" cellspacing="0">
-                    <tbody class="border-1">
-                       <tr>
-                         <td class="text-center font-weight-bold">Per Units</td>
-                         <td class="text-center"><span>&#8369;</span>{{ $unit }}</td>
-                         <td>
-                             <a href="#" class="btn btn-sm btn-outline-success btn-icon-split" data-toggle="modal" data-target="#cost_per_unit">
-                                 <span class="icon">
-                                     <i class="fas fa-pen text-success"></i>
-                                 </span>
-                                 <span class="text">Edit</span>
-                             </a>
-                         </td>
-                       </tr>
-                       <tr>
-                        <td class="text-center font-weight-bold">Units</td>
-                        <td class="text-center">{{ $firstyear }}</td>
-                        <td></td>
-                       </tr>
-                       <tr>
-                        <td class="text-center font-weight-bold">Tuition (Regular Student)</td>
-                        <td class="text-center"><span>&#8369;</span>{{ ($firstyear)*$unit }}</td>
-                        <td></td>
-                       </tr>
-                    </tbody>
-                </table>
-            </div>
+              @include('modals/managefees/tuition-fee/firstyear._firstsem')
 
-
-        </div>
-        <div class="tab-pane fade" id="pills-fs" role="tabpanel" aria-labelledby="pills-profile-tab">1second</div>
+          </div>
       </div>
-  </div>
+
+      <div class="tab-pane fade" id="pills-fs" role="tabpanel" aria-labelledby="pills-profile-tab">
+          <div class="d-flex align-content-stretch flex-wrap">
+
+              @include('modals/managefees/tuition-fee/firstyear._secondsem')
+
+          </div>
+      </div>
+    </div>
+</div>
+
+
 
 

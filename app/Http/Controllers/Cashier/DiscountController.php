@@ -37,7 +37,7 @@ class DiscountController extends Controller
         ]);
 
 
-        return redirect()->back()->with('success','Fee Added!');
+        return redirect()->back()->with('success','Discount Added!');
     }
 
     /**

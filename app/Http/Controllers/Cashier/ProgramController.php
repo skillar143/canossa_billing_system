@@ -37,23 +37,68 @@ class ProgramController extends Controller
         ->where('course_id',"=",$id)
         ->first();
 
-        if($per_unit == "null"){
-           $unit = "0";
-        }else{
+
+
+        if (empty($per_unit)) {
+            $unit = "0";
+         } else {
             $unit = $per_unit->amount_per_units;
-        }
+         }
 
 
 
-        $firstyear = Curriculum::where('year',"=","1")
+        $firstyear_firstsem = Curriculum::where('year',"=","1")
         ->where('course_id',"=",$id)
         ->where('semester',"=","1")
         ->sum('units');
 
+        $firstyear_secondsem = Curriculum::where('year',"=","1")
+        ->where('course_id',"=",$id)
+        ->where('semester',"=","2")
+        ->sum('units');
 
+        $secondyear_firstsem = Curriculum::where('year',"=","2")
+        ->where('course_id',"=",$id)
+        ->where('semester',"=","1")
+        ->sum('units');
 
+        $secondyear_secondsem = Curriculum::where('year',"=","2")
+        ->where('course_id',"=",$id)
+        ->where('semester',"=","2")
+        ->sum('units');
 
-        return view('cashier/managefees.viewFees', compact('course','firstyear','unit'));
+        $thirdyear_firstsem = Curriculum::where('year',"=","3")
+        ->where('course_id',"=",$id)
+        ->where('semester',"=","1")
+        ->sum('units');
+
+        $thirdyear_secondsem = Curriculum::where('year',"=","3")
+        ->where('course_id',"=",$id)
+        ->where('semester',"=","2")
+        ->sum('units');
+
+        $fourthyear_firstsem = Curriculum::where('year',"=","4")
+        ->where('course_id',"=",$id)
+        ->where('semester',"=","1")
+        ->sum('units');
+
+        $fourthyear_secondsem = Curriculum::where('year',"=","4")
+        ->where('course_id',"=",$id)
+        ->where('semester',"=","2")
+        ->sum('units');
+
+        $curr = [
+            'firstyear_firstsem' => $firstyear_firstsem,
+            'firstyear_secondsem' => $firstyear_secondsem,
+            'secondyear_firstsem' => $secondyear_firstsem,
+            'secondyear_secondsem' => $secondyear_secondsem,
+            'thirdyear_firstsem' => $thirdyear_firstsem,
+            'thirdyear_secondsem' => $thirdyear_secondsem,
+            'fourthyear_firstsem' => $fourthyear_firstsem,
+            'fourthyear_secondsem' => $fourthyear_secondsem,
+        ];
+
+        return view('cashier/managefees.viewFees', compact('course','curr','unit'));
     }
     /**
      * Store a newly created resource in storage.
@@ -68,10 +113,16 @@ class ProgramController extends Controller
 
     public function unit(Request $request, $id)
     {
-       tuition_per_unit::where('course_id','=',$id)->update([
-            'amount_per_units' =>$request->amount,
-            ]);
 
-            return redirect()->back()->with('update', 'Fee updated!');
+                $data = [
+                    'course_id' => $id,
+                    'amount_per_units' => $request->amount,
+                ];
+
+                tuition_per_unit::updateOrCreate(['course_id' => $id], $data);
+
+                return redirect()->back()->with('update', 'Fee updated!');
+
     }
 }
+

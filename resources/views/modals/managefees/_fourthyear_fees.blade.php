@@ -15,8 +15,22 @@
   <div class="card-body">
 
       <div class="tab-content" id="pills-tabContent">
-        <div class="tab-pane fade show active" id="pills-pf" role="tabpanel" aria-labelledby="pills-home-tab">4first</div>
-        <div class="tab-pane fade" id="pills-ps" role="tabpanel" aria-labelledby="pills-profile-tab">4second</div>
+        <div class="tab-pane fade show active" id="pills-pf" role="tabpanel" aria-labelledby="pills-home-tab">
+            <div class="d-flex align-content-stretch flex-wrap">
+
+                @include('modals/managefees/tuition-fee/fourthyear._firstsem')
+
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="pills-ps" role="tabpanel" aria-labelledby="pills-profile-tab">
+            <div class="d-flex align-content-stretch flex-wrap">
+
+                @include('modals/managefees/tuition-fee/fourthyear._secondsem')
+
+            </div>
+        </div>
       </div>
   </div>
+
 

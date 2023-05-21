@@ -14,9 +14,22 @@
   <hr class="sidebar-divider d-none d-md-block">
   <div class="card-body">
 
-      <div class="tab-content" id="pills-tabContent">
-        <div class="tab-pane fade show active" id="pills-tf" role="tabpanel" aria-labelledby="pills-home-tab">3first</div>
-        <div class="tab-pane fade" id="pills-ts" role="tabpanel" aria-labelledby="pills-profile-tab">3second</div>
+    <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-tf" role="tabpanel" aria-labelledby="pills-home-tab">
+            <div class="d-flex align-content-stretch flex-wrap">
+
+                @include('modals/managefees/tuition-fee/thirdyear._firstsem')
+
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="pills-ts" role="tabpanel" aria-labelledby="pills-profile-tab">
+            <div class="d-flex align-content-stretch flex-wrap">
+
+                @include('modals/managefees/tuition-fee/thirdyear._secondsem')
+
+            </div>
+        </div>
       </div>
   </div>
 

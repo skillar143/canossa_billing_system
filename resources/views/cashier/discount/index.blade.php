@@ -31,7 +31,7 @@
                 @foreach($discounts as $discount)
                    <tr>
                      <td class="text-center font-weight-bold">{{ $discount->description }}</td>
-                     <td class="text-center font-weight-bold">{{ $discount->amount }}%</td>
+                     <td class="text-center font-weight-bold">{{ number_format($discount->amount, 1, '.', ',') }}%</td>
                      <td >
 
                             <a href="" class="btn btn-sm btn-outline-success btn-icon-split m-1 edit-discount" data-toggle="modal" data-target="#editDiscount"
