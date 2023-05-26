@@ -25,8 +25,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::prefix('/fee')->group(function(){
-    Route::get('/', [App\Http\Controllers\Cashier\FeeController::class, 'index'])->name('fee.index');
-    Route::post('/Add', [App\Http\Controllers\Cashier\FeeController::class, 'store'])->name('fee.store');
+    Route::get('/{type}', [App\Http\Controllers\Cashier\FeeController::class, 'index'])->name('fee.index');
+    Route::post('/Add/{type}', [App\Http\Controllers\Cashier\FeeController::class, 'store'])->name('fee.store');
     Route::put('/update/{id}', [App\Http\Controllers\Cashier\FeeController::class, 'update']);
     Route::delete('/delete/{id}',[App\Http\Controllers\Cashier\FeeController::class, 'destroy']);
 

@@ -5,13 +5,9 @@
 @include('modals/discount.deleteDiscount')
 
 
-@include('modals/fee.addFee')
-@include('modals/fee.editFee')
-@include('modals/fee.deleteFee')
 
+@yield('modals')
 
-{{-- @include('modals/managefees.viewFees')
-@include('modals/managefees.add_program_fee') --}}
 
 
 

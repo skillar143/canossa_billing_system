@@ -17,6 +17,7 @@ class CreateFeesTable extends Migration
             $table->id();
             $table->string('description');
             $table->integer('amount');
+            $table->integer('type');
             $table->timestamps();
         });
     }

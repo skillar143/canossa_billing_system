@@ -1,4 +1,4 @@
-<div class="card m-1" style="width: 20rem;">
+<div class="card m-1 shadow" style="width: fit-content;">
     <div class="card-body">
         <h5 class="card-title">Tuition fee</h5>
         <div class="table-responsive">
@@ -18,12 +18,12 @@
                    </tr>
                    <tr>
                     <td class="text-center font-weight-bold">Units</td>
-                    <td class="text-center">{{ $curr['secondyear_secondsem'] }}</td>
+                    <td class="text-center">{{ $curr['year'.$year]['semester'.$semester] }}</td>
                     <td></td>
                    </tr>
                    <tr>
                     <td class="text-center font-weight-bold">Tuition (Regular Student)</td>
-                    <td class="text-center">{{ '₱' .number_format(($curr['secondyear_secondsem'])*$unit), 2, '.',',' }}</td>
+                    <td class="text-center">{{ '₱' .number_format(($curr['year'.$year]['semester'.$semester])*$unit), 2, '.',',' }}</td>
                     <td></td>
                    </tr>
                 </tbody>
@@ -31,3 +31,4 @@
         </div>
     </div>
 </div>
+

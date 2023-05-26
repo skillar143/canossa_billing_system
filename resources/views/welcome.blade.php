@@ -17,19 +17,19 @@
         <div class="logo">
             <img src="{{ asset('img/logo.png') }}" alt="">
         </div>
-        <div class="text-center mt-4 name text-dark">
+        <div class="text-center mt-4 name text-light">
             Billing
         </div>
         <form class="p-3 mt-3" action="{{ route('login') }}" method="post">
             @csrf
             <div class="form-field d-flex align-items-center">
                 <span class="far fa-user" id="icon"></span>
-                <input class="text-gray text-center" type="text" name="" id="" value="cashier" disabled>
+                <input class="text-light text-center" type="text" name="" id="" value="cashier" disabled>
                 <input class="text-dark text-center" type="hidden" name="username" id="userName" value="cashier" >
             </div>
             <div class="form-field d-flex align-items-center">
                 <span class="fas fa-key" id="icon"></span>
-                <input class="text-dark text-center" type="password" name="password" id="pwd" placeholder="Password">
+                <input class="text-light text-center" type="password" name="password" id="pwd" placeholder="Password" focused="true">
             </div>
             <button class="btn mt-3">Login</button>
         </form>

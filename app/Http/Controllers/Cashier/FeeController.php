@@ -18,11 +18,23 @@ class FeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($type)
     {
-        $fees = Fee::all();
+        $fees = Fee::all()->where('type','=',$type);
 
-        return view ('cashier/fee.index', compact('fees'));
+        switch ($type) {
+            case '0':
+                $title = "Computer Fees";
+                break;
+            case '1':
+                $title = "Special Fees";
+                break;
+            case '2':
+                $title = "Other School Fees";
+                break;
+        }
+
+        return view ('cashier/fee.index', compact('fees','title','type'));
     }
 
     /**
@@ -31,11 +43,13 @@ class FeeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $type)
     {
+
         Fee::create([
             'description' =>$request->description,
-            'amount' =>$request->amount
+            'amount' =>$request->amount,
+            'type' =>$type
         ]);
 
 

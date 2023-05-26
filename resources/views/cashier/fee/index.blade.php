@@ -5,7 +5,7 @@
 <div class="card shadow mx-auto mt-5 animated--grow-in" style="width: 80%;">
     <div class="card-header py-3 d-flex">
 
-            <h6 class="m-0 font-weight-bold text-primary">School Fee</h6>
+            <h6 class="m-0 font-weight-bold text-primary">{{ $title }}</h6>
 
         <div class="ml-auto">
             <a href="#" class="btn btn-sm btn-outline-primary btn-icon-split" data-toggle="modal" data-target="#AddFee">
@@ -50,7 +50,6 @@
                                 </span>
                                 <span class="text px-3 d-none d-xl-block">Delete</span>
                             </a>
-
                      </td>
                    </tr>
                 @endforeach
@@ -61,4 +60,11 @@
     </div>
 </div>
 
+
+@endsection
+
+@section('modals')
+    @include('modals/fee.addFee')
+    @include('modals/fee.editFee')
+    @include('modals/fee.deleteFee')
 @endsection
