@@ -44,4 +44,30 @@
 
 
 
+    /** Course Fee */
+
+            $('.add-fee').each(function() {
+             $(this).click(function(event){
+               $('#feeAdd').attr("action", "http://localhost/csis_lrvl_v/public/Faculty/Delete/"+($(this).data('id'))+"");
+
+               switch ($(this).data('type')) {
+                  case 0:
+                  $('#title').text("Computer Fee")
+                    break;
+                  case 1:
+                  $('#title').text("Special Fee")
+                    break;
+                  case 2:
+                  $('#title').text("Other School Fee")
+                    break;
+
+                }
+
+
+
+            })
+           });
+
+
+
     </script>

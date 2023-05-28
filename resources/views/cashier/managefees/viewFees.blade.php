@@ -47,6 +47,6 @@
 
 @section('modals')
 
-    @include('modals/course-fees/other-school-fees.add')
+    @include('modals/course-fees.add')
 
 @endsection

@@ -24,7 +24,6 @@ class ProgramController extends Controller
         $this->middleware('auth');
     }
 
-
     public function index()
     {
         $programs = Program::all();
@@ -82,7 +81,6 @@ class ProgramController extends Controller
 
     public function unit(Request $request, $id)
     {
-
                 $data = [
                     'course_id' => $id,
                     'amount_per_units' => $request->amount,
@@ -91,7 +89,19 @@ class ProgramController extends Controller
                 tuition_per_unit::updateOrCreate(['course_id' => $id], $data);
 
                 return redirect()->back()->with('update', 'Fee updated!');
+    }
+
+    public function CourseFee(Request $request, $id)
+    {
+
+        Table::create([
+            'course_id' => $id,
+            'type' =>$request->description,
+            'description' =>$request->amount,
+            'amount' =>$type
+        ]);
 
     }
+
 }
 

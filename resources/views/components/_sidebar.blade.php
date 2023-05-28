@@ -1,3 +1,7 @@
+@php
+    $currentUrl = request()->fullUrl();
+@endphp
+
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
@@ -12,10 +16,10 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
-        <a class="nav-link" href="{{ route('home') }}">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
+    <li class="nav-item {{ preg_match('/\bhome\b/i', request()->fullUrl()) ? 'bg-light' : '' }}">
+        <a class="nav-link {{ preg_match('/\bhome\b/i', request()->fullUrl()) ? 'text-dark' : '' }}" href="{{ route('home') }}">
+            <i class="fas fa-fw fa-tachometer-alt "></i>
+            <span class="" >Dashboard</span></a>
     </li>
 
     <li class="nav-item">
@@ -43,14 +47,14 @@
 
     <!-- Nav Item - Term -->
 
-    <li class="nav-item ">
-        <a class="nav-link" href="{{ route('managefees.index') }}">
+    <li class="nav-item {{ preg_match('/\bmanagefees\b/i', request()->fullUrl()) ? 'bg-light' : '' }}">
+        <a class="nav-link {{ preg_match('/\bmanagefees\b/i', request()->fullUrl()) ? 'text-dark' : '' }}" href="{{ route('managefees.index') }}">
         <i class="fas fa-tasks"></i>
             <span>Course & Fees</span></a>
     </li>
 
-    <li class="nav-item ">
-        <a class="nav-link" href="{{ route('discount.index') }}">
+    <li class="nav-item {{ preg_match('/\bdiscount\b/i', request()->fullUrl()) ? 'bg-light' : '' }}">
+        <a class="nav-link {{ preg_match('/\bdiscount\b/i', request()->fullUrl()) ? 'text-dark' : '' }}" href="{{ route('discount.index') }}">
             <i class="fas fa-percent"></i>
             <span>Discount</span></a>
     </li>
@@ -62,7 +66,7 @@
     </li> --}}
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFees"
+        <a class="nav-link collapsed " href="#" data-toggle="collapse" data-target="#collapseFees"
             aria-expanded="true" aria-controls="collapseFees">
             <i class="fas fa-money-bill"></i>
             <span>Fees</span>
@@ -77,8 +81,8 @@
         </div>
     </li>
 
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('student.index') }}">
+    <li class="nav-item {{ preg_match('/\bstudent\b/i', request()->fullUrl()) ? 'bg-light' : '' }}">
+        <a class="nav-link {{ preg_match('/\bstudent\b/i', request()->fullUrl()) ? 'text-dark' : '' }}" href="{{ route('student.index') }}">
             <i class="fas fa-users"></i>
             <span>Students</span></a>
     </li>

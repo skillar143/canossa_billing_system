@@ -8,7 +8,7 @@
             <h6 class="m-0 font-weight-bold text-primary">{{ $title }}</h6>
 
         <div class="ml-auto">
-            <a href="#" class="btn btn-sm btn-outline-primary btn-icon-split" data-toggle="modal" data-target="#AddFee">
+            <a href="#" class="btn btn-sm btn-outline-primary btn-icon-split add-fee" data-toggle="modal" data-target="#AddFee">
                 <span class="icon">
                     <i class="fas fa-plus text-primary"></i>
                 </span>

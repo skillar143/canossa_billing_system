@@ -5,8 +5,8 @@
             <table class="table "  sort="asc" width="100%" cellspacing="0">
                 <tbody class="border-1">
                    <tr>
-                     <td class="text-center font-weight-bold">Per Units</td>
-                     <td class="text-center">{{ '₱' .number_format($unit, 2, '.', ',') }}</td>
+                     <td class=" font-weight-bold">Per Units</td>
+                     <td class="">{{ '₱' .number_format($unit, 2, '.', ',') }}</td>
                      <td>
                          <a href="#" class="btn btn-sm btn-outline-success btn-icon-split" data-toggle="modal" data-target="#cost_per_unit">
                              <span class="icon">
@@ -17,13 +17,13 @@
                      </td>
                    </tr>
                    <tr>
-                    <td class="text-center font-weight-bold">Units</td>
-                    <td class="text-center">{{ $curr['year'.$year]['semester'.$semester] }}</td>
+                    <td class=" font-weight-bold">Units</td>
+                    <td class="">{{ $curr['year'.$year]['semester'.$semester] }}</td>
                     <td></td>
                    </tr>
                    <tr>
-                    <td class="text-center font-weight-bold">Tuition (Regular Student)</td>
-                    <td class="text-center">{{ '₱' .number_format(($curr['year'.$year]['semester'.$semester])*$unit), 2, '.',',' }}</td>
+                    <td class=" font-weight-bold">Tuition (Regular Student)</td>
+                    <td class="">{{ '₱' .number_format(($curr['year'.$year]['semester'.$semester])*$unit), 2, '.',',' }}</td>
                     <td></td>
                    </tr>
                 </tbody>
