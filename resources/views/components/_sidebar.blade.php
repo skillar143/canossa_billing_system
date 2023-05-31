@@ -66,17 +66,18 @@
     </li> --}}
 
     <li class="nav-item">
-        <a class="nav-link collapsed " href="#" data-toggle="collapse" data-target="#collapseFees"
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFees"
             aria-expanded="true" aria-controls="collapseFees">
             <i class="fas fa-money-bill"></i>
             <span>Fees</span>
         </a>
-        <div id="collapseFees" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseFees" class="collapse {{ preg_match('/\bfee\b/i', request()->fullUrl()) ? 'show' : '' }}
+            " aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Type of Fee:</h6>
-                <a class="collapse-item" href="{{ route('fee.index','0') }}"><i class="fas fa-desktop mx-1"></i>Computer Fees</a>
-                <a class="collapse-item" href="{{ route('fee.index','1') }}"><i class="fas fa-book mx-1"></i>Special Fees</a>
-                <a class="collapse-item" href="{{ route('fee.index','2') }}"><i class="fas fa-puzzle-piece mx-1"></i>Other School Fees</a>
+                <a class="collapse-item {{  preg_match('/^(?=.*\bfee\b)(?=.*\b0\b).*$/', request()->fullUrl()) ? 'bg-dark text-light' : '' }}" href="{{ route('fee.index','0') }}"><i class="fas fa-desktop mx-1"></i>Computer Fees</a>
+                <a class="collapse-item {{  preg_match('/^(?=.*\bfee\b)(?=.*\b1\b).*$/', request()->fullUrl()) ? 'bg-dark text-light' : '' }}" href="{{ route('fee.index','1') }}"><i class="fas fa-book mx-1"></i>Special Fees</a>
+                <a class="collapse-item {{  preg_match('/^(?=.*\bfee\b)(?=.*\b2\b).*$/', request()->fullUrl()) ? 'bg-dark text-light' : '' }}" href="{{ route('fee.index','2') }}"><i class="fas fa-puzzle-piece mx-1"></i>Other School Fees</a>
             </div>
         </div>
     </li>

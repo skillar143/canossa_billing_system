@@ -12,9 +12,13 @@ class CourseFee extends Model
     protected $fillable = [
         'course_id',
         'type',
-        'description',
+        'fee_id',
         'amount',
         'year',
         'semester',
     ];
+
+    public function fees(){
+        return $this->hasOne(Fee::class,'id' ,'fee_id');
+    }
 }

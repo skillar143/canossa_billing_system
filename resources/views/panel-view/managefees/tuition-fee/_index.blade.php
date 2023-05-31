@@ -23,7 +23,7 @@
                    </tr>
                    <tr>
                     <td class=" font-weight-bold">Tuition (Regular Student)</td>
-                    <td class="">{{ '₱' .number_format(($curr['year'.$year]['semester'.$semester])*$unit), 2, '.',',' }}</td>
+                    <td class="">{{ '₱' .number_format(($curr['year'.$year]['semester'.$semester])*$unit, 2, '.', ',' )}}</td>
                     <td></td>
                    </tr>
                 </tbody>

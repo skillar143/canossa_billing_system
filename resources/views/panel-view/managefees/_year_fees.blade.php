@@ -6,7 +6,7 @@
         </li>
         <li class="nav-item" role="presentation">
           <button class="btn btn-outline-primary btn-sm  mx-1 mx-1" id="pills-{{ $y }}{{ $s = "2" }}-tab" data-toggle="pill"
-            data-target="#pills-{{ $y }}{{ $s = "2" }}" type="button" role="tab" aria-controls="pills-{{ $y }}{{ $s = "2" }}" aria-selected="false">2<sup>nd</sup> Semester</button>
+            data-target="#pills-{{ $y }}{{ $s = "2" }}" type="button" role="tab" aria-controls="pills-{{ $y }}{{ $s = "2" }}" aria-selected="false"> 2<sup>nd</sup> Semester</button>
         </li>
     </ul>
 </div>
@@ -19,7 +19,6 @@
           <div class="d-flex align-content-stretch flex-wrap">
 
               @include('panel-view/managefees/tuition-fee._index', ['semester' => $s])
-
               @include('panel-view/managefees/other-school-fee._index', ['semester' => $s])
               @include('panel-view/managefees/computer-fee._index', ['semester' => $s])
               @include('panel-view/managefees/special-fee._index', ['semester' => $s])
@@ -32,10 +31,14 @@
       <div class="tab-pane fade" id="pills-{{ $y }}{{ $s = "2" }}" role="tabpanel" aria-labelledby="pills-{{ $y }}{{ $s = "2" }}-tab">
           <div class="d-flex align-content-stretch flex-wrap">
 
-              @include('panel-view/managefees/tuition-fee._index', ['semester' => $s])
-              @include('panel-view/managefees/other-school-fee._index', ['semester' => $s])
+            @include('panel-view/managefees/tuition-fee._index', ['semester' => $s])
+            @include('panel-view/managefees/other-school-fee._index', ['semester' => $s])
+            @include('panel-view/managefees/computer-fee._index', ['semester' => $s])
+            @include('panel-view/managefees/special-fee._index', ['semester' => $s])
 
           </div>
       </div>
     </div>
 </div>
+
+

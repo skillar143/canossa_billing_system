@@ -13,4 +13,9 @@ class Curriculum extends Model
 
     protected $primaryKey = 'id';
 
+    public function subject()
+    {
+        return $this->hasOne(Subject::class);
+    }
+
 }

@@ -29,5 +29,8 @@ class Fee extends Model
             return "Other School Fees";
         }
     }
+    public function courseFee(){
+        return $this->belongsTo(CourseFee::class);
+    }
 
 }

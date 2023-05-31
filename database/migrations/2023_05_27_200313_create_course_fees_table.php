@@ -17,7 +17,7 @@ class CreateCourseFeesTable extends Migration
             $table->id();
             $table->bigInteger('course_id');
             $table->integer('type');
-            $table->string('description');
+            $table->bigInteger('fee_id');
             $table->integer('amount');
             $table->integer('year');
             $table->integer('semester');

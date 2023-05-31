@@ -46,27 +46,33 @@
 
     /** Course Fee */
 
-            $('.add-fee').each(function() {
+    $('.add-feeOSF').each(function() {
              $(this).click(function(event){
-               $('#feeAdd').attr("action", "http://localhost/csis_lrvl_v/public/Faculty/Delete/"+($(this).data('id'))+"");
+               $('#feeAddOSF').attr("action", "http://localhost/canossa_billing_system/public/managefees/add/"+($(this).data('courseid'))+"/"+($(this).data('type'))+"/"+($(this).data('sem'))+"/"+($(this).data('year'))+"");
 
-               switch ($(this).data('type')) {
-                  case 0:
-                  $('#title').text("Computer Fee")
-                    break;
-                  case 1:
-                  $('#title').text("Special Fee")
-                    break;
-                  case 2:
-                  $('#title').text("Other School Fee")
-                    break;
-
-                }
-
-
-
+                  $('#titleOSF').text("Other School Fee")
             })
            });
+
+            $('.add-feeCF').each(function() {
+             $(this).click(function(event){
+               $('#feeAddCF').attr("action", "http://localhost/canossa_billing_system/public/managefees/add/"+($(this).data('courseid'))+"/"+($(this).data('type'))+"/"+($(this).data('sem'))+"/"+($(this).data('year'))+"");
+
+                  $('#titleCF').text("Computer Fee")
+            })
+           });
+
+
+
+           $('.add-feeSF').each(function() {
+             $(this).click(function(event){
+               $('#feeAddSF').attr("action", "http://localhost/canossa_billing_system/public/managefees/add/"+($(this).data('courseid'))+"/"+($(this).data('type'))+"/"+($(this).data('sem'))+"/"+($(this).data('year'))+"");
+
+                  $('#titleSF').text("Special Fee")
+            })
+           });
+
+
 
 
 

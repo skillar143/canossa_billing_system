@@ -47,6 +47,9 @@
 
 @section('modals')
 
-    @include('modals/course-fees.add')
+    @include('modals/course-fees/computer-fee.add')
+    @include('modals/course-fees/special-fee.add')
+    @include('modals/course-fees/other-school-fee.add')
+    @include('modals/course-fees/cost-per-unit.add')
 
 @endsection

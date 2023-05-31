@@ -8,6 +8,7 @@ use App\Models\Program;
 use App\Models\Curriculum;
 use App\Models\tuition_per_unit;
 use App\Models\Fee;
+use App\Models\CourseFee;
 
 
 class ProgramController extends Controller
@@ -44,29 +45,35 @@ class ProgramController extends Controller
             $unit = $per_unit->amount_per_units;
          }
 
-        $years = [1, 2, 3, 4];
-        $semesters = [1, 2];
-        $curr = [];
+         $years = [1, 2, 3, 4];
+         $semesters = [1, 2];
+         $curr = [];
 
-        foreach ($years as $year) {
-            $yearData = [];
+         foreach ($years as $year) {
+             $yearData = [];
 
-            foreach ($semesters as $semester) {
-                $units = Curriculum::where('year', '=', $year)
-                    ->where('course_id', '=', $id)
-                    ->where('semester', '=', $semester)
-                    ->sum('units');
+             foreach ($semesters as $semester) {
+                $units = Curriculum::join('subjects', 'curricula.subject_id', '=', 'subjects.id')
+                ->where('curricula.year', $year)
+                ->where('curricula.course_id', $id)
+                ->where('curricula.semester', $semester)
+                ->where('subjects.subject_type', 0)
+                ->sum('curricula.units');
 
-                $key = 'semester' . $semester;
-                $yearData[$key] = $units;
-            }
 
-            $curr['year' . $year] = $yearData;
-        }
+                 $key = 'semester' . $semester;
+                 $yearData[$key] = $units;
+             }
+
+             $curr['year' . $year] = $yearData;
+         }
+
 
         $fees = Fee::all();
 
-        return view('cashier/managefees.viewFees', compact('course','curr','unit','fees'));
+        $coursefees = CourseFee::with('fees')->where('course_id', '=', $id)->get();
+
+        return view('cashier/managefees.viewFees', compact('course','curr','unit','fees','coursefees'));
     }
     /**
      * Store a newly created resource in storage.
@@ -74,9 +81,48 @@ class ProgramController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storeFees(Request $request, $id , $type ,$sem ,$year)
     {
 
+
+            $fee_ids = $request->description;
+
+            $amounts = $request->amount;
+
+            $newData = array_map(function ($fee_id, $amount) use ($id, $type, $sem, $year) {
+                return [
+                    'type' => $type,
+                    'fee_id' => $fee_id,
+                    'amount' => $amount,
+                    'course_id' => $id,
+                    'semester' => $sem,
+                    'year' => $year,
+                ];
+            }, $fee_ids, $amounts);
+
+            $countAdded = 0;
+            foreach ($newData as $data) {
+                $item = CourseFee::firstOrNew([
+                    'semester' => $data['semester'],
+                    'year' => $data['year'],
+                    'course_id' => $data['course_id'],
+                    'fee_id' => $data['fee_id'],
+                ]);
+
+                if (!$item->exists) {
+                    $item->fill($data);
+                    $item->save();
+                    $countAdded++;
+                }
+            }
+
+            if ($countAdded == 0) {
+                return redirect()->back()->with('error', 'Fee already exists');
+            } elseif ($countAdded == 1) {
+                return redirect()->back()->with('success', 'Fee successfully added');
+            } else {
+                return redirect()->back()->with('success', 'Fees with no duplicate were added');
+            }
     }
 
     public function unit(Request $request, $id)
@@ -91,17 +137,7 @@ class ProgramController extends Controller
                 return redirect()->back()->with('update', 'Fee updated!');
     }
 
-    public function CourseFee(Request $request, $id)
-    {
 
-        Table::create([
-            'course_id' => $id,
-            'type' =>$request->description,
-            'description' =>$request->amount,
-            'amount' =>$type
-        ]);
-
-    }
 
 }
 

@@ -10,7 +10,15 @@ class Program extends Model
     protected $table = 'programs';
 
     protected $primaryKey = 'id';
- 
-   
+
+
+
+    public function subject()
+    {
+        return $this->hasOne(Subject::class,'subject_id' );
+    }
+
+
+
 }
 

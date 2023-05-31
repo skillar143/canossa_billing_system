@@ -22,11 +22,11 @@
                 <tbody>
                 @foreach($students as $student)
                    <tr>
-                     <td class="text-center h5 font-weight-bold">{{ $student->student_id }}</td>
-                     <td class="text-center h5 font-weight-bold">{{ $student->name }}</td>
+                     <td class="text-center  font-weight-bold">{{ $student->student_id }}</td>
+                     <td class="text-center  font-weight-bold">{{ $student->name }}</td>
                      <td>
                         <ul style="list-style: none">
-                            <li>Contact #: {{ $student->email }}</li>
+                            <li>Contact #: {{ $student->cellphone }}</li>
                             <li>Address: {{ $student->address }}</li>
                         </ul>
                      </td>
