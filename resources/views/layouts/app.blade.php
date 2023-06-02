@@ -75,6 +75,8 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
+    @yield('modals')
+
     @include('components._modal')
     <!-- Logout Modal-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>

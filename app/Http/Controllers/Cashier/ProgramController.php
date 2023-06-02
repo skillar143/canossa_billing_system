@@ -37,7 +37,19 @@ class ProgramController extends Controller
 
         $per_unit = tuition_per_unit::select('amount_per_units')
         ->where('course_id',"=",$id)
+        ->where('tuition_type',"=",'0')
         ->first();
+
+        $per_rle = tuition_per_unit::select('amount_per_units')
+        ->where('course_id',"=",$id)
+        ->where('tuition_type',"=",'1')
+        ->first();
+
+        if (empty($per_rle)) {
+            $rle = "0";
+         } else {
+            $rle = $per_rle->amount_per_units;
+         }
 
         if (empty($per_unit)) {
             $unit = "0";
@@ -48,6 +60,7 @@ class ProgramController extends Controller
          $years = [1, 2, 3, 4];
          $semesters = [1, 2];
          $curr = [];
+         $rleUnits = [];
 
          foreach ($years as $year) {
              $yearData = [];
@@ -66,6 +79,24 @@ class ProgramController extends Controller
              }
 
              $curr['year' . $year] = $yearData;
+
+             foreach ($semesters as $semester) {
+                $rle_units = Curriculum::join('subjects', 'curricula.subject_id', '=', 'subjects.id')
+                ->where('curricula.year', $year)
+                ->where('curricula.course_id', $id)
+                ->where('curricula.semester', $semester)
+                ->where('subjects.subject_type', 1)
+                ->sum('curricula.units');
+
+
+                 $key = 'semester' . $semester;
+                 $yearData[$key] = $rle_units;
+             }
+
+             $rleUnits['year' . $year] = $yearData;
+
+
+
          }
 
 
@@ -73,7 +104,7 @@ class ProgramController extends Controller
 
         $coursefees = CourseFee::with('fees')->where('course_id', '=', $id)->get();
 
-        return view('cashier/managefees.viewFees', compact('course','curr','unit','fees','coursefees'));
+        return view('cashier/managefees.viewFees', compact('course','curr','unit','rle','fees','coursefees','rleUnits'));
     }
     /**
      * Store a newly created resource in storage.
@@ -125,14 +156,15 @@ class ProgramController extends Controller
             }
     }
 
-    public function unit(Request $request, $id)
+    public function unit(Request $request, $id, $type)
     {
                 $data = [
                     'course_id' => $id,
+                    'tuition_type' => $type,
                     'amount_per_units' => $request->amount,
                 ];
 
-                tuition_per_unit::updateOrCreate(['course_id' => $id], $data);
+                tuition_per_unit::updateOrCreate(['course_id' => $id, 'tuition_type' => $type], $data);
 
                 return redirect()->back()->with('update', 'Fee updated!');
     }

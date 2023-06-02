@@ -1,12 +1,12 @@
 @include('modals._logout')
-
-@include('modals/discount.addDiscount')
-@include('modals/discount.editDiscount')
-@include('modals/discount.deleteDiscount')
+@include('modals._changePass')
 
 
 
-@yield('modals')
+
+
+
+
 
 
 

@@ -22,6 +22,7 @@ Auth::routes([
 ]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::put('/changePass', [App\Http\Controllers\Auth\ChangePassController::class, 'changePass'])->name('change.pass');
 
 
 Route::prefix('/fee')->group(function(){
@@ -44,7 +45,7 @@ Route::prefix('/managefees')->group(function(){
     Route::get('/', [App\Http\Controllers\Cashier\ProgramController::class, 'index'])->name('managefees.index');
     Route::get('/view/{id}', [App\Http\Controllers\Cashier\ProgramController::class, 'show'])->name('managefees.show');
     Route::post('/add/{id}/{type}/{sem}/{year}', [App\Http\Controllers\Cashier\ProgramController::class, 'storeFees'])->name('managefees.store');
-    Route::put('/unit/{id}', [App\Http\Controllers\Cashier\ProgramController::class, 'unit'])->name('managefees.unit');
+    Route::put('/unit/{id}/{type}', [App\Http\Controllers\Cashier\ProgramController::class, 'unit'])->name('managefees.unit');
 
 });
 

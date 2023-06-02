@@ -16,6 +16,7 @@ class CreateTuitionPerUnitsTable extends Migration
         Schema::create('tuition_per_units', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('course_id');
+            $table->integer('tuition_type');
             $table->integer('amount_per_units');
             $table->timestamps();
         });

@@ -61,3 +61,11 @@
 </div>
 
 @endsection
+
+@section('modals')
+
+@include('modals/discount.addDiscount')
+@include('modals/discount.editDiscount')
+@include('modals/discount.deleteDiscount')
+
+@endsection

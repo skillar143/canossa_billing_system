@@ -50,6 +50,7 @@
     @include('modals/course-fees/computer-fee.add')
     @include('modals/course-fees/special-fee.add')
     @include('modals/course-fees/other-school-fee.add')
-    @include('modals/course-fees/cost-per-unit.add')
+    @include('modals/course-fees/cost-per-unit.addNonRLE')
+    @include('modals/course-fees/cost-per-unit.addRLE')
 
 @endsection

@@ -32,7 +32,7 @@
                 @foreach($fees as $fee)
                    <tr>
                      <td class="text-center font-weight-bold">{{ $fee->description }}</td>
-                     <td class="text-center font-weight-bold">{{ $fee->amount }}</td>
+                     <td class="text-center font-weight-bold">{{ '₱' .number_format($fee->amount, 2, '.', ',') }}</td>
                      <td >
 
                             <a class="btn btn-sm btn-outline-success btn-icon-split m-1  edit-fee" data-toggle="modal" data-target="#editFee"

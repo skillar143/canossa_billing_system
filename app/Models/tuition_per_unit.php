@@ -11,6 +11,7 @@ class tuition_per_unit extends Model
 
     protected $fillable = [
         'course_id',
+        'tuition_type',
         'amount_per_units',
     ];
 
