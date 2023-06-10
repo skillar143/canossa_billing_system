@@ -22,14 +22,14 @@
             <span class="" >Dashboard</span></a>
     </li>
 
-    <li class="nav-item">
-        <a class="nav-link" href="">
+    <li class="nav-item {{ preg_match('/\bstudentfee\b/i', request()->fullUrl()) ? 'bg-light' : '' }}">
+        <a class="nav-link {{ preg_match('/\bstudentfee\b/i', request()->fullUrl()) ? 'text-dark' : '' }}" href="{{ route('studentfee.index') }}">
             <i class="fas fa-address-card"></i>
             <span>Student Fees</span></a>
     </li>
 
-    <li class="nav-item">
-        <a class="nav-link" href="">
+    <li class="nav-item {{ preg_match('/\bpayment\b/i', request()->fullUrl()) ? 'bg-light' : '' }}">
+        <a class="nav-link {{ preg_match('/\bpayment\b/i', request()->fullUrl()) ? 'text-dark' : '' }}" href="{{ route('payment.index') }}">
             <i class="fas fa-clipboard"></i>
             <span>Payments</span></a>
     </li>

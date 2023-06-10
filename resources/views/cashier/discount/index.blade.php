@@ -19,7 +19,7 @@
     <div class="card-body p-4" >
         <div class="table-responsive">
             <table class="table table-bordered "  sort="asc" width="100%" cellspacing="0">
-                <thead>
+                <thead class="text-center">
                     <tr>
                         <th class="col-3">Description</th>
                         <th class="col-1">Percentage %</th>
@@ -31,7 +31,7 @@
                 @foreach($discounts as $discount)
                    <tr>
                      <td class="text-center font-weight-bold">{{ $discount->description }}</td>
-                     <td class="text-center font-weight-bold">{{ number_format($discount->amount, 1, '.', ',') }}%</td>
+                     <td class="text-right font-weight-bold">{{ number_format($discount->amount, 1, '.', ',') }}%</td>
                      <td >
 
                             <a href="" class="btn btn-sm btn-outline-success btn-icon-split m-1 edit-discount" data-toggle="modal" data-target="#editDiscount"

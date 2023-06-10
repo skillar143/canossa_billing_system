@@ -17,8 +17,5 @@ class Program extends Model
     {
         return $this->hasOne(Subject::class,'subject_id' );
     }
-
-
-
 }
 

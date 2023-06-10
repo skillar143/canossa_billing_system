@@ -19,13 +19,14 @@
           <div class="d-flex align-content-stretch flex-wrap">
 
               @include('panel-view/managefees/tuition-fee._index', ['semester' => $s])
+              @if ($course->rle_status)
+              @include('panel-view/managefees/rle-fee._index', ['semester' => $s])
+              @endif
               @include('panel-view/managefees/other-school-fee._index', ['semester' => $s])
               @include('panel-view/managefees/computer-fee._index', ['semester' => $s])
               @include('panel-view/managefees/special-fee._index', ['semester' => $s])
 
-              @if ($course->rle_status)
-              @include('panel-view/managefees/rle-fee._index', ['semester' => $s])
-              @endif
+
 
 
           </div>
@@ -35,13 +36,14 @@
           <div class="d-flex align-content-stretch flex-wrap">
 
             @include('panel-view/managefees/tuition-fee._index', ['semester' => $s])
+            @if ($course->rle_status)
+            @include('panel-view/managefees/rle-fee._index', ['semester' => $s])
+            @endif
             @include('panel-view/managefees/other-school-fee._index', ['semester' => $s])
             @include('panel-view/managefees/computer-fee._index', ['semester' => $s])
             @include('panel-view/managefees/special-fee._index', ['semester' => $s])
 
-            @if ($course->rle_status)
-            @include('panel-view/managefees/rle-fee._index', ['semester' => $s])
-            @endif
+
 
           </div>
       </div>

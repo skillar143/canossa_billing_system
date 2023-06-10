@@ -71,7 +71,8 @@ input::placeholder{
     outline: none;
     background: none;
     font-size: 1.2rem;
-    color: gray;
+    color: black;
+    font-weight: 600;
     padding: 10px 15px 10px 10px;
 
 }

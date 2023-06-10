@@ -19,7 +19,7 @@
                               <label for="validationCustom03">Add Fee</label>
                               <select class="custom-select" name="description[]" required>
                                   <option selected disabled value="">Choose Fee</option>
-                                  @forelse($fees->where('type', 1) as $fee)
+                                  @forelse($fees->where('type', 0) as $fee)
                                     <option value="{{ $fee->id }}">{{ $fee->description }}</option>
                                   @empty
                                   <option value="">No Fees</option>

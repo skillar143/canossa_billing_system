@@ -13,8 +13,6 @@ use App\Models\CourseFee;
 
 class ProgramController extends Controller
 {
-    //
-
 /**
      * Create a new controller instance.
      *
@@ -30,82 +28,58 @@ class ProgramController extends Controller
         $programs = Program::all();
         return view('cashier/managefees.index', compact('programs'));
     }
-
-    public function show($id)
-    {
-        $course = Program::findOrFail($id);
-
-        $per_unit = tuition_per_unit::select('amount_per_units')
-        ->where('course_id',"=",$id)
-        ->where('tuition_type',"=",'0')
+private function getTuitionAmount($id, $tuitionType)
+{
+    $tuition = tuition_per_unit::select('amount_per_units')
+        ->where('course_id', $id)
+        ->where('tuition_type', $tuitionType)
         ->first();
 
-        $per_rle = tuition_per_unit::select('amount_per_units')
-        ->where('course_id',"=",$id)
-        ->where('tuition_type',"=",'1')
-        ->first();
+    return $tuition ? $tuition->amount_per_units : '0';
+}
 
-        if (empty($per_rle)) {
-            $rle = "0";
-         } else {
-            $rle = $per_rle->amount_per_units;
-         }
+private function calculateUnits($id, $subjectType)
+{
+    $years = [1, 2, 3, 4];
+    $semesters = [1, 2];
+    $curr = [];
 
-        if (empty($per_unit)) {
-            $unit = "0";
-         } else {
-            $unit = $per_unit->amount_per_units;
-         }
+    foreach ($years as $year) {
+        $yearData = [];
 
-         $years = [1, 2, 3, 4];
-         $semesters = [1, 2];
-         $curr = [];
-         $rleUnits = [];
+        foreach ($semesters as $semester) {
+            $units = $this->getCurriculumUnits($id, $year, $semester, $subjectType);
+            $key = 'semester' . $semester;
+            $yearData[$key] = $units;
+        }
 
-         foreach ($years as $year) {
-             $yearData = [];
-
-             foreach ($semesters as $semester) {
-                $units = Curriculum::join('subjects', 'curricula.subject_id', '=', 'subjects.id')
-                ->where('curricula.year', $year)
-                ->where('curricula.course_id', $id)
-                ->where('curricula.semester', $semester)
-                ->where('subjects.subject_type', 0)
-                ->sum('curricula.units');
-
-
-                 $key = 'semester' . $semester;
-                 $yearData[$key] = $units;
-             }
-
-             $curr['year' . $year] = $yearData;
-
-             foreach ($semesters as $semester) {
-                $rle_units = Curriculum::join('subjects', 'curricula.subject_id', '=', 'subjects.id')
-                ->where('curricula.year', $year)
-                ->where('curricula.course_id', $id)
-                ->where('curricula.semester', $semester)
-                ->where('subjects.subject_type', 1)
-                ->sum('curricula.units');
-
-
-                 $key = 'semester' . $semester;
-                 $yearData[$key] = $rle_units;
-             }
-
-             $rleUnits['year' . $year] = $yearData;
-
-
-
-         }
-
-
-        $fees = Fee::all();
-
-        $coursefees = CourseFee::with('fees')->where('course_id', '=', $id)->get();
-
-        return view('cashier/managefees.viewFees', compact('course','curr','unit','rle','fees','coursefees','rleUnits'));
+        $curr['year' . $year] = $yearData;
     }
+
+    return $curr;
+}
+private function getCurriculumUnits($id, $year, $semester, $subjectType)
+{
+    return Curriculum::join('subjects', 'curricula.subject_id', '=', 'subjects.id')
+        ->where('curricula.year', $year)
+        ->where('curricula.course_id', $id)
+        ->where('curricula.semester', $semester)
+        ->where('subjects.subject_type', $subjectType)
+        ->sum('curricula.units');
+}
+
+public function show($id)
+{
+    $course = Program::findOrFail($id);
+    $unit = $this->getTuitionAmount($id, '0');
+    $rle = $this->getTuitionAmount($id, '1');
+    $curr = $this->calculateUnits($id, '0');
+    $rleUnits = $this->calculateUnits($id, '1');
+    $fees = Fee::all();
+    $coursefees = CourseFee::with('fees')->where('course_id', $id)->get();
+
+    return view('cashier/managefees.viewFees', compact('course', 'curr', 'unit', 'rle', 'fees', 'coursefees', 'rleUnits'));
+}
     /**
      * Store a newly created resource in storage.
      *

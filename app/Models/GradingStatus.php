@@ -5,16 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Student extends Model
+class GradingStatus extends Model
 {
     use HasFactory;
-
-    protected $table = 'students';
+    protected $table = 'grading_statuses';
 
     protected $primaryKey = 'id';
-
-    public function program()
-    {
-        return $this->belongsTo(Program::class,'program_id' );
-    }
 }

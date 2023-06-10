@@ -49,7 +49,18 @@ Route::prefix('/managefees')->group(function(){
 
 });
 
+Route::prefix('/payment')->group(function(){
+    Route::get('/', [App\Http\Controllers\Cashier\PaymentController::class, 'index'])->name('payment.index');
+});
+
+Route::prefix('/studentfee')->group(function(){
+    Route::get('/', [App\Http\Controllers\Cashier\StudentController::class, 'indexFee'])->name('studentfee.index');
+    Route::get('/view/{id}', [App\Http\Controllers\Cashier\StudentController::class, 'view'])->name('studentfee.view');
+
+});
+
 Route::get('/student', [App\Http\Controllers\Cashier\StudentController::class, 'index'])->name('student.index');
+
 
 Route::get('/discount', [App\Http\Controllers\Cashier\DiscountController::class, 'index'])->name('discount.index');
 
