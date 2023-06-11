@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Cashier;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\Program;
 use App\Models\Student;
+use App\Models\CourseFee;
+use App\Models\Curriculum;
+use Illuminate\Http\Request;
 use App\Models\GradingStatus;
 use App\Models\tuition_per_unit;
-use App\Models\CourseFee;
+use App\Http\Controllers\Controller;
 
 class StudentController extends Controller
 {
@@ -48,15 +50,24 @@ class StudentController extends Controller
     }
 
     private function getTuitionAmount($id, $tuitionType)
-{
-        $tuition = tuition_per_unit::
-        select('amount_per_units')
-        ->where('course_id', $id)
-        ->where('tuition_type', $tuitionType)
-        ->first();
+    {
+            $tuition = tuition_per_unit::
+            select('amount_per_units')
+            ->where('course_id', $id)
+            ->where('tuition_type', $tuitionType)
+            ->first();
 
-    return $tuition ? $tuition->amount_per_units : '0';
-}
+        return $tuition ? $tuition->amount_per_units : '0';
+    }
+    private function getUnits($course_id, $year, $sem, $subject_type){
+
+        return  Curriculum::join('subjects', 'curricula.subject_id', '=', 'subjects.id')
+                ->where('curricula.year', $year)
+                ->where('curricula.course_id', $course_id)
+                ->where('curricula.semester', $sem)
+                ->where('subjects.subject_type', $subject_type)
+                ->sum('curricula.units');
+    }
 
     public function view($id){
 
@@ -68,10 +79,12 @@ class StudentController extends Controller
         $studentfees = $this->getFees($course_id, $year ,$sem);
         $per_unit = $this->getTuitionAmount($id, '0');
         $per_rle = $this->getTuitionAmount($id, '1');
-        $gradingStatus = GradingStatus::where('id', '=', '1')->first();
+        $units = $this->getUnits($course_id, $year, $sem, '0');
+        $rle = $this->getUnits($course_id, $year, $sem, '1');
 
+        $course = Program::findOrFail($course_id);
 
-        return view('cashier/studentfee.view', compact('student','per_unit','studentfees'));
+        return view('cashier/studentfee.view', compact('student','per_unit','per_rle','studentfees','units','rle','course'));
 
     }
 }
