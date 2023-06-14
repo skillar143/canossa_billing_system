@@ -34,7 +34,7 @@
                     </tr>
                     <tr>
                         <th class="col-2">Tuition</th>
-                        <th class="col-2">{{ '₱' . number_format(($per_unit * $units), 2, '.', ',') }}</th>
+                        <th class="col-2">{{ '₱' . number_format(($total_ttn), 2, '.', ',') }}</th>
                     </tr>
 
                     {{-- rle --}}
@@ -140,16 +140,25 @@
                     <tr class="table-primary" >
                         <th>Total Fees</th>
                         @php
-                        $total_fees = $total_ttn + $total_rle + $total_ofs + $total_cf + $total_sf;
+                        $total_fees = ($total_ttn) + $total_rle + $total_ofs + $total_cf + $total_sf;
                         @endphp
                         <th id="overall-total">{{ '₱' . number_format($total_fees, 2, '.', ',') }}</th>
                     </tr>
-
                 </tbody>
             </table>
         </div>
     </div>
+    <div class="modal-footer">
+        <a class="btn btn-sm btn-outline-success btn-icon-split m-1" data-toggle="modal" data-target="#studentBill">
+            <span class="icon">
+                <i class="fas fa-money-check-alt fa-lg"></i>
+                </span>
+                <span class="text px-3">Check Out</span>
+        </a>
+    </div>
 </div>
+
+@include('modals.student-fees.payment')
 
 @endsection
 
@@ -160,21 +169,41 @@
         $('.remove-fee').click(function() {
             var feeId = $(this).data('id');
             var feeType = $(this).data('type');
-
             // Remove the fee row from the table
             $('#' + feeType + '-' + feeId).remove();
-
             // Update the individual total
             var individualTotal = parseFloat($('#individual-total-' + feeType).text().replace(/₱|,/g, ''));
             var feeAmount = parseFloat($(this).closest('tr').find('td:eq(1)').text().replace(/₱|,/g, ''));
             individualTotal -= feeAmount;
             $('#individual-total-' + feeType).text('₱' + individualTotal.toFixed(2));
-
+            $('#individual-total-input-' + feeType).val(individualTotal.toFixed(2));
             // Update the overall total
             var overallTotal = parseFloat($('#overall-total').text().replace(/₱|,/g, ''));
             overallTotal -= feeAmount;
             $('#overall-total').text('₱' + overallTotal.toFixed(2));
+            $('#overall-total-input').val('₱' + overallTotal.toFixed(2));
+            $('#overall-total-inp').val(overallTotal);
         });
     });
+
+
+
+    $(document).ready(function() {
+  $('#discount-select').change(function() {
+    var tuitionAmount = parseFloat($('#tuition-total-input').val().replace(/[^\d.]/g, ''));
+    var selectedDiscount = parseFloat($(this).val()) / 100; // Convert the discount amount to a percentage
+    var discountAmount = tuitionAmount * selectedDiscount; // Calculate the discount amount
+    var discountedTuition = tuitionAmount - discountAmount;
+    var totalFees = discountedTuition + parseFloat($('#individual-total-input-cf').val().replace(/[^\d.]/g, '')) + parseFloat($('#individual-total-input-sf').val().replace(/[^\d.]/g, '')) + parseFloat($('#individual-total-input-ofs').val().replace(/[^\d.]/g, ''));
+
+    $('#discounted-tuition-input').val('₱' + discountedTuition.toFixed(2));
+    $('#overall-total-input').val('₱' + totalFees.toFixed(2));
+    $('#overall-total-inp').val(totalFees);
+  });
+});
+
+
+
+
 </script>
 @endsection

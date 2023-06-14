@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Cashier;
 
 use App\Models\Program;
 use App\Models\Student;
+use App\Models\Discount;
 use App\Models\CourseFee;
 use App\Models\Curriculum;
 use Illuminate\Http\Request;
@@ -74,17 +75,20 @@ class StudentController extends Controller
         $student = Student::where('id', '=', $id)->with('program')->first();
         $year = $student->year;
         $course_id = $student->program_id;
-
         $sem = $this->getTerm();
         $studentfees = $this->getFees($course_id, $year ,$sem);
         $per_unit = $this->getTuitionAmount($id, '0');
         $per_rle = $this->getTuitionAmount($id, '1');
         $units = $this->getUnits($course_id, $year, $sem, '0');
         $rle = $this->getUnits($course_id, $year, $sem, '1');
-
         $course = Program::findOrFail($course_id);
+        $discounts = Discount::all();
 
-        return view('cashier/studentfee.view', compact('student','per_unit','per_rle','studentfees','units','rle','course'));
+        return view('cashier/studentfee.view', compact('student','per_unit','per_rle','studentfees','units','rle','course','discounts'));
+    }
 
+    public function storeBill(Request $request, $id){
+
+        dd($request->payment_type);
     }
 }
