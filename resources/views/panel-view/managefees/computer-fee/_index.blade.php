@@ -1,7 +1,7 @@
 <div class="card m-1 shadow" style="width: fit-content;">
     <div class="card-body">
         <div class="d-flex">
-            <h5 class="card-title">Computer Fees</h5>
+            <h5 class="card-title mr-3 text-dark">Computer Fees</h5>
             <div class="ml-auto">
 
                 <a href="#" class="btn btn-sm btn-outline-primary btn-icon-split add-feeCF" data-toggle="modal" data-target="#addFeeCF"

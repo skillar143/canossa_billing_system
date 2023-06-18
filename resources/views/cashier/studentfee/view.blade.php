@@ -3,9 +3,9 @@
 @section('content')
 
 <div class="card shadow m-5 mx-auto animated--grow-in w-50 center">
-    <div class="card-header py-3 d-flex">
-        <div class="ml-auto">
-            <h6 class="m-0 font-weight-bold text-mute">{{ $student->student_id }}</h6>
+    <div class="card-header py-3 d-flex ">
+        <div class="">
+            <h6 class="m-0 font-weight-bold text-primary">{{$student->name ." (". $student->student_id .")" }}</h6>
         </div>
     </div>
     <div class="card-body">
@@ -16,7 +16,7 @@
             $total_cf = 0;
             $total_sf = 0;
             $total_ttn = $per_unit * $units;
-            $total_rle = $course->rle_status ? ($per_rle * $rle) : 0;
+            $total_rle = $per_rle * $rle;
             @endphp
             <table class="table">
                 <tbody>
@@ -52,7 +52,7 @@
                     </tr>
                     <tr>
                         <th>Total RLE</th>
-                        <th>{{ '₱' . number_format(($per_rle * $rle), 2, '.', ',') }}</th>
+                        <th>{{ '₱' . number_format(($total_rle), 2, '.', ',') }}</th>
                     </tr>
                     @endif
 
@@ -140,7 +140,7 @@
                     <tr class="table-primary" >
                         <th>Total Fees</th>
                         @php
-                        $total_fees = ($total_ttn) + $total_rle + $total_ofs + $total_cf + $total_sf;
+                        $total_fees = $total_ttn + $total_rle + $total_ofs + $total_cf + $total_sf;
                         @endphp
                         <th id="overall-total">{{ '₱' . number_format($total_fees, 2, '.', ',') }}</th>
                     </tr>
@@ -191,18 +191,20 @@
     $(document).ready(function() {
   $('#discount-select').change(function() {
     var tuitionAmount = parseFloat($('#tuition-total-input').val().replace(/[^\d.]/g, ''));
+    var rleAmount = parseFloat($('#rle-total-input').val().replace(/[^\d.]/g, ''));
+    var cfTotal = parseFloat($('#individual-total-input-cf').val().replace(/[^\d.]/g, ''));
+    var sfTotal = parseFloat($('#individual-total-input-sf').val().replace(/[^\d.]/g, ''));
+    var ofsTotal = parseFloat($('#individual-total-input-ofs').val().replace(/[^\d.]/g, ''));
     var selectedDiscount = parseFloat($(this).val()) / 100; // Convert the discount amount to a percentage
     var discountAmount = tuitionAmount * selectedDiscount; // Calculate the discount amount
     var discountedTuition = tuitionAmount - discountAmount;
-    var totalFees = discountedTuition + parseFloat($('#individual-total-input-cf').val().replace(/[^\d.]/g, '')) + parseFloat($('#individual-total-input-sf').val().replace(/[^\d.]/g, '')) + parseFloat($('#individual-total-input-ofs').val().replace(/[^\d.]/g, ''));
+    var totalFees = discountedTuition + rleAmount + cfTotal + sfTotal + ofsTotal ;
 
     $('#discounted-tuition-input').val('₱' + discountedTuition.toFixed(2));
     $('#overall-total-input').val('₱' + totalFees.toFixed(2));
     $('#overall-total-inp').val(totalFees);
   });
 });
-
-
 
 
 </script>

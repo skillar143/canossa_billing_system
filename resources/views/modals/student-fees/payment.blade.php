@@ -1,5 +1,5 @@
 <div class="modal fade" id="studentBill" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header bg-primary">
                 <h5 class="modal-title text-light" id="exampleModalLabel"></h5>
@@ -29,6 +29,12 @@
                             <input type="text" class="form-control w-50 ml-auto" id="discounted-tuition-input" value="{{ '₱' . number_format(($total_ttn), 2, '.', ',') }}" disabled>
                         </div>
                         <hr class="sidebar-divider">
+                        <div class="form-group {{ $course->rle_status ? 'flex d-flex' : 'd-none' }}">
+                            <label class="mx-2 mt-2 h5 " for="tuition-total-input">Related Learning Experience(RLE)</label>
+                            <input type="text" class="form-control w-50 ml-auto" id="rle-total-input" value="{{ '₱' . number_format(($total_rle), 2, '.', ',') }}" disabled>
+
+                        </div>
+                        <hr class="sidebar-divider {{ $course->rle_status ? '' : 'd-none' }}">
 
                         <div class="form-group flex d-flex">
                             <label class="mx-2 mt-2 h5" for="individual-total-input-cf">Computer Fees</label>
@@ -48,7 +54,7 @@
                         <div class="form-group flex d-flex">
                             <label class="mx-2 mt-2 h5" for="overall-total">Total</label>
                             <input type="text" class="form-control w-50 ml-auto" id="overall-total-input" value="{{ '₱' . number_format($total_fees, 2, '.', ',') }}" readonly>
-                            <input type="text" name="total_bill" class="form-control w-50 ml-auto" id="overall-total-inp" value="{{$total_fees}}" readonly>
+                            <input type="hidden" name="total_bill" class="form-control w-50 ml-auto" id="overall-total-inp" value="{{$total_fees}}" readonly>
                         </div>
                         <div class="form-group flex d-flex">
                             <label class="mx-2 mt-2 h5" for="payment-type-select">Type of Payment</label>

@@ -1,11 +1,11 @@
 <div class="card m-1 shadow" style="width: fit-content;">
     <div class="card-body">
-        <h5 class="card-title">Tuition fee</h5>
+        <h5 class="card-title mr-3 text-dark">Tuition fee</h5>
         <div class="table-responsive">
             <table class="table "  sort="asc" width="100%" cellspacing="0">
                 <tbody class="border-1">
                    <tr>
-                     <td class=" font-weight-bold">Per Units</td>
+                     <td class="">Per Units</td>
                      <td class="">{{ '₱' .number_format($unit, 2, '.', ',') }}</td>
                      <td>
                          <a href="#" class="btn btn-sm btn-outline-success btn-icon-split" data-toggle="modal" data-target="#cost_per_unit">
@@ -17,7 +17,7 @@
                      </td>
                    </tr>
                    <tr>
-                    <td class=" font-weight-bold">Units</td>
+                    <td class="">Units</td>
                     <td class="">{{ $curr['year'.$year]['semester'.$semester] }}</td>
                     <td></td>
                    </tr>

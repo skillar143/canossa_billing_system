@@ -1,7 +1,7 @@
 <div class="card m-1 shadow" style="width: fit-content;">
     <div class="card-body">
         <div class="d-flex">
-            <h5 class="card-title">Special Fees</h5>
+            <h5 class="card-title mr-3 text-dark">Special Fees</h5>
             <div class="ml-auto">
                 <a href="#" class="btn btn-sm btn-outline-primary btn-icon-split add-feeSF" data-toggle="modal" data-target="#addFeeSF"
                 data-type="1" data-courseid="{{ $course->id }}" data-sem="{{ $semester }}" data-year="{{ $year }}">

@@ -1,6 +1,6 @@
 <div class="card m-1 shadow" style="width: fit-content;">
     <div class="card-body">
-        <h5 class="card-title">RLE Per Units</h5>
+        <h5 class="card-title mr-3 text-dark">RLE Per Units</h5>
         <div class="table-responsive">
             <table class="table "  sort="asc" width="100%" cellspacing="0">
                 <tbody class="border-1">

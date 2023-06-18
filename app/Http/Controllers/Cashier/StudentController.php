@@ -77,8 +77,8 @@ class StudentController extends Controller
         $course_id = $student->program_id;
         $sem = $this->getTerm();
         $studentfees = $this->getFees($course_id, $year ,$sem);
-        $per_unit = $this->getTuitionAmount($id, '0');
-        $per_rle = $this->getTuitionAmount($id, '1');
+        $per_unit = $this->getTuitionAmount($course_id, '0');
+        $per_rle = $this->getTuitionAmount($course_id, '1');
         $units = $this->getUnits($course_id, $year, $sem, '0');
         $rle = $this->getUnits($course_id, $year, $sem, '1');
         $course = Program::findOrFail($course_id);
