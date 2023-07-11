@@ -2,24 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Route::get('/', function () { return view('welcome'); });
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Auth::routes(['register' => false]);
 
-Auth::routes([
-    'register' => false,
-]);
+
+Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::put('/changePass', [App\Http\Controllers\Auth\ChangePassController::class, 'changePass'])->name('change.pass');
@@ -46,29 +34,26 @@ Route::prefix('/managefees')->group(function(){
     Route::get('/view/{id}', [App\Http\Controllers\Cashier\ProgramController::class, 'show'])->name('managefees.show');
     Route::post('/add/{id}/{type}/{sem}/{year}', [App\Http\Controllers\Cashier\ProgramController::class, 'storeFees'])->name('managefees.store');
     Route::put('/unit/{id}/{type}', [App\Http\Controllers\Cashier\ProgramController::class, 'unit'])->name('managefees.unit');
-
+    Route::delete('/delete/{id}/{cfeeid}', [App\Http\Controllers\Cashier\ProgramController::class, 'delete']);
 });
 
 Route::prefix('/payment')->group(function(){
-    Route::get('/', [App\Http\Controllers\Cashier\PaymentController::class, 'index'])->name('payment.index');
+    Route::put('/{id}', [App\Http\Controllers\Cashier\PaymentController::class, 'store'])->name('payment.store');
 });
 
 Route::prefix('/studentfee')->group(function(){
     Route::get('/', [App\Http\Controllers\Cashier\StudentController::class, 'indexFee'])->name('studentfee.index');
     Route::get('/view/{id}', [App\Http\Controllers\Cashier\StudentController::class, 'view'])->name('studentfee.view');
-    Route::post('/store/{id}', [App\Http\Controllers\Cashier\BillingController::class, 'storeBill'])->name('billing.store');
-
 });
 
 Route::prefix('/billing')->group(function(){
-    Route::post('/store/{id}', [App\Http\Controllers\Cashier\BillingController::class, 'storeBill'])->name('billing.store');
+    Route::get('/', [App\Http\Controllers\Cashier\BillingController::class, 'index'])->name('payment.index');
+    Route::post('/process-bill',  [App\Http\Controllers\Cashier\BillingController::class, 'processBill']);
+    Route::post('/store/{billid}', [App\Http\Controllers\Cashier\BillingController::class, 'storeBill'])->name('billing.store');
 });
 
 
 Route::get('/student', [App\Http\Controllers\Cashier\StudentController::class, 'index'])->name('student.index');
-
-
-Route::get('/discount', [App\Http\Controllers\Cashier\DiscountController::class, 'index'])->name('discount.index');
 
 
 

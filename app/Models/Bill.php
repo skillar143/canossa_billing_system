@@ -13,6 +13,41 @@ class Bill extends Model
         'student_id',
         'payment_type',
         'amount',
-
+        'discount_id',
+        'term',
+        'status',
+        'year',
     ];
+
+    public function getType(){
+        if( $this->payment_type == 0 ) return "Full Payment";
+
+        if( $this->payment_type == 1 ) return "Installment";
+    }
+
+    public function student()
+    {
+        return $this->hasOne(Student::class,'id', 'student_id');
+    }
+
+    public function discount()
+    {
+        return $this->hasOne(Discount::class,'id', 'discount_id');
+    }
+
+    public function studentPayments()
+    {
+        return $this->hasMany(StudentPayment::class, 'bill_id');
+    }
+
+    public function computeTotalPayment()
+    {
+        $totalPayment = $this->amount;
+
+        foreach ($this->studentPayments as $payment) {
+            $totalPayment -= $payment->cash;
+        }
+
+        return $totalPayment;
+    }
 }

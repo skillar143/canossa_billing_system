@@ -73,18 +73,18 @@ class StudentController extends Controller
     public function view($id){
 
         $student = Student::where('id', '=', $id)->with('program')->first();
-        $year = $student->year;
+    
         $course_id = $student->program_id;
         $sem = $this->getTerm();
-        $studentfees = $this->getFees($course_id, $year ,$sem);
+        $studentfees = $this->getFees($course_id, $student->year ,$sem);
         $per_unit = $this->getTuitionAmount($course_id, '0');
         $per_rle = $this->getTuitionAmount($course_id, '1');
-        $units = $this->getUnits($course_id, $year, $sem, '0');
-        $rle = $this->getUnits($course_id, $year, $sem, '1');
+        $units = $this->getUnits($course_id, $student->year, $sem, '0');
+        $rle = $this->getUnits($course_id, $student->year, $sem, '1');
         $course = Program::findOrFail($course_id);
         $discounts = Discount::all();
-
-        return view('cashier/studentfee.view', compact('student','per_unit','per_rle','studentfees','units','rle','course','discounts'));
+       
+        return view('cashier/studentfee.view', compact('student','per_unit','per_rle','studentfees','units','rle','course','discounts','sem'));
     }
 
     public function storeBill(Request $request, $id){

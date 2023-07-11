@@ -23,8 +23,8 @@
                 <thead>
                     <tr>
                         <th class="col-3">Description</th>
-                        <th class="col-1">Amount</th>
-                        <th class="col-1">Action</th>
+                        <th class="col-2">Amount</th>
+                        <th class="col-2">Action</th>
 
                     </tr>
                 </thead>
@@ -33,7 +33,7 @@
                    <tr>
                      <td class="text-center font-weight-bold">{{ $fee->description }}</td>
                      <td class="text-center font-weight-bold">{{ '₱' .number_format($fee->amount, 2, '.', ',') }}</td>
-                     <td >
+                     <td class="text-center">
 
                             <a class="btn btn-sm btn-outline-success btn-icon-split m-1  edit-fee" data-toggle="modal" data-target="#editFee"
                             data-id="{{ $fee->id }}"  data-description="{{ $fee->description }}" data-amount="{{ $fee->amount }}" >

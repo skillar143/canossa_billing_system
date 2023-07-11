@@ -27,7 +27,17 @@
 
      <!-- Custom styles for this page -->
      <link href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
-
+     <style>
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+    
+        input[type="number"] {
+          -moz-appearance: textfield;
+        }
+      </style>
 
 </head>
 
@@ -68,6 +78,11 @@
         <!-- End of Content Wrapper -->
 
     </div>
+    <form id="logout-form" action="{{ route('logout') }}" method="POST">
+        @csrf
+       
+    </form>
+    
     <!-- End of Page Wrapper -->
 
     <!-- Scroll to Top Button-->
@@ -78,35 +93,9 @@
     @yield('modals')
 
     @include('components._modal')
-    <!-- Logout Modal-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+    
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}" ></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
-
-    <!-- Page level plugins -->
-    <script src="{{ asset('vendor/chart.js/Chart.min.js') }}"></script>
-
-    <!-- Page level custom scripts -->
-     {{-- <script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>
-     <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script> --}}
-
-    <!-- Page level plugins -->
-     <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
-     <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
-
-
-     <!-- Page level custom scripts -->
-     <script src="{{ asset('js/demo/datatables-demo.js') }}"></script>
-
-     @include('components._modalscript')
+    @include('components._script')
 
 </body>
 

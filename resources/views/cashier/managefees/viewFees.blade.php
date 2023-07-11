@@ -52,5 +52,7 @@
     @include('modals/course-fees/other-school-fee.add')
     @include('modals/course-fees/cost-per-unit.addNonRLE')
     @include('modals/course-fees/cost-per-unit.addRLE')
+    
+    @include('modals/course-fees.deletefee')
 
 @endsection

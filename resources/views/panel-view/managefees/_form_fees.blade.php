@@ -40,16 +40,4 @@
 
 
 
-    $price = 100234.50; // Replace with your actual price
-
-// Calculate the individual values
-$part1 = floor($price / 3);
-$part2 = floor($price / 3);
-$part3 = $price - ($part1 + $part2);
-
-// Display the values
-echo "Part 1: " . $part1 . "<br>";
-echo "Part 2: " . $part2 . "<br>";
-echo "Part 3: " . $part3 . "<br>";
-
-echo "Total: " . ($part1 + $part2 + $part3);
+   

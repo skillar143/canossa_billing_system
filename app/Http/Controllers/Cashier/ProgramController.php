@@ -66,6 +66,7 @@ class ProgramController extends Controller
         $fees = Fee::all();
         $coursefees = CourseFee::with('fees')->where('course_id', $id)->get();
 
+       
         return view('cashier/managefees.viewFees', compact('course', 'curr', 'unit', 'rle', 'fees', 'coursefees', 'rleUnits'));
     }
     public function storeFees(Request $request, $id , $type ,$sem ,$year)
@@ -114,6 +115,12 @@ class ProgramController extends Controller
         tuition_per_unit::updateOrCreate(['course_id' => $id, 'tuition_type' => $type], $data);
         return redirect()->back()->with('update', 'Fee updated!');
     }
+public function delete($id, $cfeeid){ 
+    CourseFee::where('id','=',$id)->delete();
+        return redirect()->back()->with('delete', 'Fee Successfully Removed!');
+}
+
+
 
 }//end controller
 

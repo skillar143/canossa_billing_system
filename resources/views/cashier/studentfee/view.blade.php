@@ -149,7 +149,7 @@
         </div>
     </div>
     <div class="modal-footer">
-        <a class="btn btn-sm btn-outline-success btn-icon-split m-1" data-toggle="modal" data-target="#studentBill">
+        <a class="btn btn-sm btn-outline-success btn-icon-split m-1" data-toggle="modal" data-target="#studentBill" id="payment">
             <span class="icon">
                 <i class="fas fa-money-check-alt fa-lg"></i>
                 </span>
@@ -186,25 +186,47 @@
         });
     });
 
-
-
-    $(document).ready(function() {
+$(document).ready(function() {
   $('#discount-select').change(function() {
     var tuitionAmount = parseFloat($('#tuition-total-input').val().replace(/[^\d.]/g, ''));
     var rleAmount = parseFloat($('#rle-total-input').val().replace(/[^\d.]/g, ''));
     var cfTotal = parseFloat($('#individual-total-input-cf').val().replace(/[^\d.]/g, ''));
     var sfTotal = parseFloat($('#individual-total-input-sf').val().replace(/[^\d.]/g, ''));
     var ofsTotal = parseFloat($('#individual-total-input-ofs').val().replace(/[^\d.]/g, ''));
-    var selectedDiscount = parseFloat($(this).val()) / 100; // Convert the discount amount to a percentage
+
+    var selectedDiscount = parseFloat($(this).find('option:selected').data('discount')) / 100; // Convert the discount amount to a percentage
     var discountAmount = tuitionAmount * selectedDiscount; // Calculate the discount amount
     var discountedTuition = tuitionAmount - discountAmount;
-    var totalFees = discountedTuition + rleAmount + cfTotal + sfTotal + ofsTotal ;
+    var totalFees = discountedTuition + rleAmount + cfTotal + sfTotal + ofsTotal;
 
     $('#discounted-tuition-input').val('₱' + discountedTuition.toFixed(2));
     $('#overall-total-input').val('₱' + totalFees.toFixed(2));
     $('#overall-total-inp').val(totalFees);
   });
 });
+
+
+
+
+$(document).ready(function() {
+  $('#payment').click(function() {
+    var tuitionAmount = parseFloat($('#tuition-total-input').val().replace(/[^\d.]/g, ''));
+    var rleAmount = parseFloat($('#rle-total-input').val().replace(/[^\d.]/g, ''));
+    var cfTotal = parseFloat($('#individual-total-input-cf').val().replace(/[^\d.]/g, ''));
+    var sfTotal = parseFloat($('#individual-total-input-sf').val().replace(/[^\d.]/g, ''));
+    var ofsTotal = parseFloat($('#individual-total-input-ofs').val().replace(/[^\d.]/g, ''));
+
+    var Discount = parseFloat($('#discount-select').find('option:selected').data('discount')) / 100;  // Convert the discount amount to a percentage
+    var discountAmount = tuitionAmount * Discount; // Calculate the discount amount
+    var discountedTuition = tuitionAmount - discountAmount;
+    var totalFees = discountedTuition + rleAmount + cfTotal + sfTotal + ofsTotal;
+
+    $('#discounted-tuition-input').val('₱' + discountedTuition.toFixed(2));
+    $('#overall-total-input').val('₱' + totalFees.toFixed(2));
+    $('#overall-total-inp').val(totalFees);
+  });
+});
+
 
 
 </script>

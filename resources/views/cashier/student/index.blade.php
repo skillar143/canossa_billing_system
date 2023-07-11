@@ -10,7 +10,7 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered "  sort="asc" width="100%" cellspacing="0">
+            <table class="table table-bordered " id="dataTable" sort="asc" width="100%" cellspacing="0">
                 <thead>
                     <tr>
                         <th class="col-2">Student id</th>

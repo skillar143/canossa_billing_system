@@ -9,7 +9,6 @@
                 </button>
             </div>
             <form action="{{ route('managefees.unit', [$course->id, 'type' => '1']) }}" method="post">
-
                 @method('PUT')
                 @csrf
                 <div class="modal-body">

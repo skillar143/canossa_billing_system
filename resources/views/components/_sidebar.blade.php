@@ -41,10 +41,6 @@
         List
     </div>
 
-
-
-
-
     <!-- Nav Item - Term -->
 
     <li class="nav-item {{ preg_match('/\bmanagefees\b/i', request()->fullUrl()) ? 'bg-light' : '' }}">
@@ -85,7 +81,7 @@
     <li class="nav-item {{ preg_match('/\bstudent\b/i', request()->fullUrl()) ? 'bg-light' : '' }}">
         <a class="nav-link {{ preg_match('/\bstudent\b/i', request()->fullUrl()) ? 'text-dark' : '' }}" href="{{ route('student.index') }}">
             <i class="fas fa-users"></i>
-            <span>Students</span></a>
+            <span>Students Information</span></a>
     </li>
 
 

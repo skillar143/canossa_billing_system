@@ -22,8 +22,8 @@
                 <thead class="text-center">
                     <tr>
                         <th class="col-3">Description</th>
-                        <th class="col-1">Percentage %</th>
-                        <th class="col-1">Action</th>
+                        <th class="col-2">Percentage %</th>
+                        <th class="col-2">Action</th>
 
                     </tr>
                 </thead>

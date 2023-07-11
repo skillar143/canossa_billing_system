@@ -1,4 +1,4 @@
-<div class="card m-1 shadow" style="width: fit-content;">
+<div class="card m-1 shadow w-100">
     <div class="card-body">
         <div class="d-flex">
             <h5 class="card-title mr-3 text-dark">Other School Fees</h5>
@@ -31,14 +31,11 @@
                         <td>{{ '₱' .number_format($cfees->fees->amount, 2, '.', ',') }}</td>
 
                         <td>
-                            <a class="btn btn-sm btn-outline-success  m-1  edit-fee" data-toggle="modal" data-target="#editFee"
-                            data-id=""  data-description="" data-amount="" >
-                                    <i class="fas fa-pen text-success"></i>
-                            </a>
-                            <a href="#" class="btn btn-sm btn-outline-danger  delete-fee m-1" data-toggle="modal" data-target="#deleteFee"
-                            data-id=""  data-description="" data-amount="" >
+                            <a href="#" class="btn btn-sm btn-outline-danger  delete-cfee m-1" data-toggle="modal" data-target="#deleteFee"
+                            data-courseid="{{ $course->id }}" data-id="{{$cfees->id}}"  data-description="{{ $cfees->fees->description }}" data-amount="{{ '₱' .number_format($cfees->fees->amount, 2, '.', ',') }}" >
                                 <i class="fas fa-minus text-danger"></i>
                             </a>
+
                         </td>
                     </tr>
                     @php

@@ -1,4 +1,4 @@
-<div class="card m-1 shadow" style="width: fit-content;">
+<div class="card m-1 shadow w-100">
     <div class="card-body">
         <div class="d-flex">
             <h5 class="card-title mr-3 text-dark">Special Fees</h5>

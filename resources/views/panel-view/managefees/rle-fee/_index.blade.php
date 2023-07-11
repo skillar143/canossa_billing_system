@@ -1,4 +1,4 @@
-<div class="card m-1 shadow" style="width: fit-content;">
+<div class="card m-1 shadow w-100">
     <div class="card-body">
         <h5 class="card-title mr-3 text-dark">RLE Per Units</h5>
         <div class="table-responsive">

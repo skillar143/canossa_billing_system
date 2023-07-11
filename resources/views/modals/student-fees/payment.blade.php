@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header bg-primary">
-                <h5 class="modal-title text-light" id="exampleModalLabel"></h5>
+                <h5 class="modal-title text-light" id="exampleModalLabel">Payment Details</h5>
                 <button class="close text-light" type="button" data-dismiss="modal" aria-label="Close">
                     <i class="fa fa-window-close" aria-hidden="true"></i>
                 </button>
@@ -17,10 +17,10 @@
                         </div>
                         <div class="form-group flex d-flex">
                             <label class="mx-2 mt-2 h5" for="discount-select">Discount</label>
-                            <select name="discount-select" id="discount-select" class="form-control w-50 ml-auto">
-                                <option value="0" selected>No Discount</option>
+                            <select name="discount" id="discount-select" class="form-control w-50 ml-auto">
+                                <option value="0" data-discount="0" selected>No Discount</option>
                                 @foreach ($discounts as $discount)
-                                <option value="{{ $discount->amount }}">{{ $discount->description }}</option>
+                                <option value="{{ $discount->id }}" data-discount="{{ $discount->amount }}">{{ $discount->description }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -54,7 +54,7 @@
                         <div class="form-group flex d-flex">
                             <label class="mx-2 mt-2 h5" for="overall-total">Total</label>
                             <input type="text" class="form-control w-50 ml-auto" id="overall-total-input" value="{{ '₱' . number_format($total_fees, 2, '.', ',') }}" readonly>
-                            <input type="hidden" name="total_bill" class="form-control w-50 ml-auto" id="overall-total-inp" value="{{$total_fees}}" readonly>
+                            <input type="hidden" name="total_bill" class="form-control w-50 ml-auto" id="overall-total-inp" value="{{ $total_fees }}" readonly>
                         </div>
                         <div class="form-group flex d-flex">
                             <label class="mx-2 mt-2 h5" for="payment-type-select">Type of Payment</label>
@@ -62,6 +62,10 @@
                                 <option value="0" selected>Full Payment</option>
                                 <option value="1">Installment (per term)</option>
                             </select>
+                        </div>
+                        <div class="form-group d-none">
+                            <input type="text" name="year" class="form-control w-50 ml-auto" value="{{ $student->year}}" readonly>
+                            <input type="text" name="term" class="form-control w-50 ml-auto"  value="{{ $sem }}" readonly>
                         </div>
                     </div>
                 </div>

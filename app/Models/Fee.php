@@ -24,7 +24,7 @@ class Fee extends Model
         {
             return "Special Fees";
         }
-        if( $this->type == 3 )
+        if( $this->type == 2 )
         {
             return "Other School Fees";
         }
